@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function work(){
+        let n = document.getElementById("name").value
+        let e = document.getElementById("mail").value
+        let p = document.getElementById("pass").value
+        let d = document.getElementById("dob").value
+
+        data.innerHTML = `${n} | ${e} | ${p} | ${d}`
+    }
+</script>
+<body>
+    <h1>NEW USER SIGNUP FORM</h1>
+    <p><input type = "text" id = "name" placeholder="Name"></p>
+    <p><input type = "email" id = "mail" placeholder="Email address"></p>
+    <p><input type = "password" id = "pass" placeholder="Password"></p>
+    <p><input type = "date" id = "dob" placeholder="Date of birth"></p>
+    <button onclick="work()">REGISTER</button>
+
+    <div id = "data"></div>
+
+
+
+</body>
+</html>

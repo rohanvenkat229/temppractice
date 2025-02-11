@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function f2(){  
+    let str1 = document.getElementById("name").value
+    let str2 = document.getElementById("age").value
+    let str3 = document.getElementById("edu").value
+    let str4 = document.getElementById("place").value
+
+    msg.innerHTML = `${str1} | ${str2} | ${str3} | ${str4}`;
+    }
+</script>
+<body>
+
+    <p><input type = "text" id ="name" placeholder="Enter Name"/></p>
+    <p><input type = "text" id ="age" placeholder="Enter age"/></p>
+    <p><input type = "text" id ="edu" placeholder="Education"/></p>
+    <p><input type = "text" id ="place" placeholder="Place"/></p>
+    <button  onclick="f2()">Submit</button>
+    <p><div id ="msg"></div></p>
+</body>
+</html>

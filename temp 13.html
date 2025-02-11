@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function calculate(){
+        let a = parseInt(document.getElementById("n1").value);
+        let b = parseInt(document.getElementById("n2").value);
+
+
+        msg1.innerHTML = `${a} + ${b} = ${a+b}`;
+        msg2.innerHTML = `${a} - ${b} = ${a-b}`;
+        msg3.innerHTML = `${a} x ${b} = ${a*b}`;
+        msg4.innerHTML = `${a} / ${b} = ${a/b}`;
+    }
+</script>
+<body>
+
+   
+    <p><input type = "number" id ="n1" placeholder="Enter Number 1"/></p>
+    <p><input type = "number" id ="n2" placeholder="Enter Number 2"/></p>
+
+    <button onclick="calculate()">Submit</button>
+    <p> <div id ="msg1"></div></p>
+    <p> <div id ="msg2"></div></p>
+    <p> <div id ="msg3"></div></p>
+    <p> <div id ="msg4"></div></p>
+</body>
+</html>
