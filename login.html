@@ -7,9 +7,10 @@
 </head>
 <script>
     function f1(){
-        let e = document.getElementById("mail").value
+      //  let e = document.getElementById("mail").value
+        let e = document.querySelector(".c").value
         let p = document.getElementById("pass").value
-
+        
         data.innerHTML = `${e} | ${p}`;
     }
 </script>
@@ -24,10 +25,13 @@
             font-size: 100%;
             background-color: blue;
         }
+        .c{
+            background-color: yellow;
+        }
 </style>
 <body>
     <div class = "container">
-    <p><input type = "text" id = "mail" placeholder="Email address"></p>
+    <p><input type = "text" class = "c" id = "mail" placeholder="Email address"></p>
     <p><input type = "password" id = "pass" placeholder="Password"></p>
     <button onclick="f1()">Login</button>
     <div id = "data"></div>

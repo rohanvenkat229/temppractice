@@ -14,21 +14,59 @@
         ]
         const cart ={};
         const addtocart =(id)=>{
+            
             cart[id] =1;
             console.log(cart);
             showCart();
+
         };
+       const decrement = (id)=>{
+
+        cart[id] -= 1
+        cart[id]<1 && delete cart[id];
+        console.log(cart)
+        showCart();
+
+       }
+       const increment =(id)=>{
+        cart[id] += 1
+        console.log(cart)
+        showCart();
+
+       }
+       const showtotal = ()=>{
+       let t = products.reduce((sum,value)=>
+       {
+         if(cart[value.id])
+         {
+            return sum +value.price * cart[value.id];
+         }
+         return sum;
+    },0);
+   // return sum +value.price *(cart[value.id]? cart[value.id]:0) 
+        total.innerHTML = t 
+    }
         const showCart=()=>
         {
              let str = "";
                     products.map((value) => {
                       if (cart[value.id]) {
                         str += `
-                        <li>${value.name}-$${value.price}-<button>-</button>${cart[value.id]}<button>+</button>-${value.price*cart[value.id]}</li>
+                        <li>${value.name}-$${value.price}-<button onclick ="decrement(${value.id})">-</button>${cart[value.id]}<button onclick ="increment(${value.id})">+</button>-${value.price*cart[value.id]}</li>
                         `;
                       }
                     });
                     shop.innerHTML = str;
+                    let count =Object.keys(cart).length
+                    items.innerHTML = count
+                    showtotal(); 
+                    
+        }
+        const displayCart=()=> {
+            divCartBlock.style.display = "block"
+        }
+        const hideCart=()=>{
+            divCartBlock.style.display = "none"
         }
         const showProducts = () =>{
          let str =""
@@ -36,7 +74,8 @@
             
             str+= `<li>
                 ${value.id}  ${value.name}  ${value.price} <button onclick=addtocart(${value.id})>Add to cart</button></li>`
-           // console.log(value.name,value.price);
+
+            
             })
            divproducts.innerHTML = str;
        
@@ -45,10 +84,16 @@
     </head>
     <body onload="showProducts()">
         <h1> My Store</h1>
+        <h4 onclick="displayCart()">Cart:<span id ="items" ></span></h4>
         <h3>Products</h3>
         <div id = "divproducts"></div>
+    <div id = "divCartBlock" style ="display: none;">
         <h3>My Cart</h3>
         <div id ="shop"></div>
+        <div id = "total"></div>
+
+        <button onclick="hideCart()">Close</button>
+    </div>
 
 </body>
 </html>
