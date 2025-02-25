@@ -34,9 +34,11 @@
       </div>
     </div>
     <script>
+      let baseURL = "https://rohanvenkat229.github.io/temppractice/";
+
       str = "<b>Temp File:</b>";
       for (let i = 1; i <= 30; i++) {
-        str += `<a href="temp${i}.html" target="tempFrm" class="page">${i}</a>`;
+        str += `<a href="${baseURL}temp${i}.html" target="tempFrm" class="page">${i}</a>`;
       }
       divTitle.innerHTML = str;
     </script>
