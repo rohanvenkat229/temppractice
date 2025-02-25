@@ -20,17 +20,20 @@
         justify-content: center;
       }
       .title {
-        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        font-size: 25px;
         margin-top: 30px;
       }
       .header {
         font-size: 50px;
         color: blue;
         font-weight: bold;
-        font-family: verdana;
-      }
+        font-family: Arial, Helvetica, sans-serif
+       }
       .caption {
-        font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
         color: gray;
         text-align: center;
         margin-bottom: 5px;
@@ -45,10 +48,11 @@
       }
       button {
         color: white;
-        background-color: green;
+        background-color: rgb(19, 180, 19);
+        font-weight: bold;
         font-size: 20px;
         padding: 5px;
-        border-radius: 2px;
+        border-radius: 5px;
         width: 150px;
         border: none;
         margin: 5px;
@@ -106,15 +110,16 @@
         "Nov",
         "Dec",
       ];
-      let firstname=""
+      let firstname = "";
       let surname = "";
-      let email = ""
-      let password = ""
-      let gender = ""
-      let day = ""
-      let month = ""
-      let year = ""
-      let pronoun = ""
+      let email = "";
+      let password = "";
+      let gender = 0;
+      let dd = null;
+      let mm;
+      let yy;
+      let pronoun = "";
+      let g = "";
       const showData = () => {
         firstname = document.getElementById("firstname").value;
         surname = document.getElementById("surname").value;
@@ -122,11 +127,12 @@
         password = document.getElementById("password").value;
         gender = document.getElementsByName("gender");
         pronoun = document.getElementById("prSelect").value;
-        let day = document.getElementById("day").value;
-        let month = document.getElementById("month").value;
-        let year = document.getElementById("year").value;
-        let dob = `${day}-${month}-${year}`;
-        let g = "";
+        dd = Number(document.getElementById("day").value);
+        mm = Number(document.getElementById("month").value);
+        yy = Number(document.getElementById("year").value);
+        console.log(dd, mm, yy);
+        let dob = `${dd}-${months[mm]}-${yy}`;
+        g = "";
         if (gender[0].checked) g = "Female";
         if (gender[1].checked) g = "Male";
         if (gender[2].checked) g = pronoun;
@@ -147,16 +153,17 @@
       const f1 = () => {
         let str = "";
         let dt = new Date();
-        let d = dt.getDate();
-        let m = dt.getMonth();
-        let y = dt.getFullYear();
+        let d = dd ?? dt.getDate();
+        let m = mm ?? dt.getMonth();
+        let y = yy ?? dt.getFullYear();
+        if (pronoun != "NA") prSelect.style.display = "block";
         for (let i = 1; i <= 31; i++) {
           str += `<option ${i === d && "selected"}>${i}</option>`;
         }
         day.innerHTML = str;
         str = "";
         for (let i = 0; i <= 11; i++) {
-          str += `<option ${i === m && "selected"}>${months[i]}</option>`;
+          str += `<option value=${i} ${i === m && "selected"}>${months[i]}</option>`;
         }
         month.innerHTML = str;
         str = "";
@@ -195,15 +202,21 @@
       <div class="row">
         <div class="radioClass">
           <div><label> Female</label></div>
-          <div><input type="radio" name="gender" onclick="togglePronoun()" /></div>
+          <div><input type="radio" ${
+            g === "Female" && "checked"
+          } name="gender" onclick="togglePronoun()" /></div>
         </div>
         <div class="radioClass">
           <div><label> Male</label></div>
-          <div><input type="radio" name="gender" onclick="togglePronoun()" /></div>
+          <div><input type="radio" ${
+            g === "Male" && "checked"
+          } name="gender" onclick="togglePronoun()" /></div>
         </div>
         <div class="radioClass">
           <div><label> Custom</label></div>
-          <div><input type="radio" name="gender" onclick="togglePronoun()" /></div>
+          <div><input type="radio" ${
+            pronoun != "NA" && "checked"
+          } name="gender" onclick="togglePronoun()" /></div>
         </div>
       </div>
 
@@ -221,7 +234,7 @@
       </div>
       <div class="row">
         <input type="password" value='${password}' id="password" placeholder="New password" />
-        <img src="assets/images/eye-hide.png" id='toggleEye' onclick='togglePwd()' width="40px">
+        <img src="assets/eye-hide.png" id='toggleEye' onclick='togglePwd()' width="35px">
       </div>
       <div class="row">
         <button onclick='showData()'>Sign Up</button>
